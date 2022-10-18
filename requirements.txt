@@ -1,0 +1,3 @@
+Django
+python-telegram-bot
+requests

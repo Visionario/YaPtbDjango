@@ -1,0 +1,220 @@
+import os
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = "django-insecure-(l0yt$s49dj)e=%5824_k_s-ej+7lc7yweinlk%04nhlm-z4m7"
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+# Application definition
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # Local apps
+    "bot.apps.BotConfig",
+]
+
+# Database: Using  SQLite
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = "static/"
+
+APP_INFO = {
+    'name': 'YaPtbDjango: Yet another Python Telegram Bot with Django',
+    'prefix': 'yaptbdjango',
+    'app_author': "Asdrúbal Velásquez Lagrave",
+    'app_contact': "Telegram/Twitter/Github: @Visionario",
+    'app_author_tg': "@Visionario",
+    'app_copyright': "-",
+    'app_credits': "Asdrúbal Velásquez Lagrave",
+    'app_license': "MIT",
+    'app_version': "0.1.0",
+    'app_maintainer': "Asdrúbal Velásquez Lagrave",
+    'app_status': "DEMO - BETA"
+}
+
+TELEGRAMBOT = {
+    # BOT admin list, can execute admin commands.
+    'SUPERADMINS': [1234567890],
+
+    # 'MODE':(Optional [str]) # The default value is WEBHOOK,
+    # otherwise you may use 'POLLING'
+    # NB: if use polling you must run using:
+    # python manage.py botpolling --token="TOKEN-TELEGRAM-BOT"
+    # or
+    # python manage.py botpolling --username="BOT-USERNAME"
+    # a management command that starts a worker
+    'MODE': 'POLLING',
+
+    # Webhook site to telegram updates
+    'WEBHOOK_SITE': 'https://MY-DOMAIN.COM',
+
+    # 'WEBHOOK_PREFIX':(Optional[str]) # If this value is specified,
+    # a prefix is added to webhook url
+    # 'WEBHOOK_PREFIX': 'WEBHOOK-PREFIX',
+
+    # 'cert.pem', # If your site use self-signed
+    # certificate, must be set with location of your public key
+    # certificate.(More info at https://core.telegram.org/bots/self-signed )
+    # 'WEBHOOK_CERTIFICATE' :
+
+    # Your bot token.
+    'TOKEN': 'BOT TOKEN HERE',
+
+    # 'ALLOWED_UPDATES':(Optional[list[str]]), # List the types of
+    # updates you want your bot to receive. For example, specify
+    # ''["message", "edited_channel_post", "callback_query"]'' to
+    # only receive updates of these types. See ''telegram.Update''
+    # for a complete list of available update types.
+    # Specify an empty list to receive all updates regardless of type
+    # (default). If not specified, the previous setting will be used.
+    # Please note that this parameter doesn't affect updates created
+    # before the call to the setWebhook, so unwanted updates may be
+    # received for a short period of time.
+
+    # Pass True to drop all pending updates
+    # https://core.telegram.org/bots/api#setwebhook
+    'WEBHOOK_DROP_PENDING_UPDATES': True,
+
+    # https://core.telegram.org/bots/api#setwebhook
+    # A secret token to be sent in a header “X-Telegram-Bot-Api-Secret-Token” in every webhook request,
+    # 1-256 characters.
+    # Only characters A-Z, a-z, 0-9, _ and - are allowed.
+    # The header is useful to ensure that the request comes from a webhook set by you.
+    # get_random_string(n=64,include_chars='-_')
+    'WEBHOOK_SECRET_TOKEN': 'WEBHOOK_SECRET_TOKEN',
+
+    # 'TIMEOUT':(Optional[int|float]), # If this value is specified,
+    # use it as the read timeout from the server
+
+    # Maximum allowed number of simultaneous HTTPS connections to the webhook for update
+    # delivery, 1-100. Defaults to 40. Use lower values to limit the
+    # load on your bot's server, and higher values to increase your bot's throughput.
+    # 'WEBHOOK_MAX_CONNECTIONS':(Optional[int]),
+    'WEBHOOK_MAX_CONNECTIONS': 25,
+
+    # Make this True if you want to use message-queue
+    # 'MESSAGEQUEUE_ENABLED':(Optional[bool]),
+
+    # If not provided 29 is the default value
+    # 'MESSAGEQUEUE_ALL_BURST_LIMIT':(Optional[int]),
+
+    # If not provided 1024 is the default value
+    # 'MESSAGEQUEUE_ALL_TIME_LIMIT_MS':(Optional[int]),
+
+    # If not provided 8 is the default value
+    # 'MESSAGEQUEUE_REQUEST_CON_POOL_SIZE':(Optional[int]),
+
+    # Time to wait between polling updates from Telegram in
+    # seconds. Default is 0.0
+    # 'POLL_INTERVAL' : (Optional[float])
+
+    # Whether to clean any pending updates on Telegram servers before
+    # actually starting to poll. Default is False.
+    # 'POLL_CLEAN':(Optional[bool]),
+    'POLL_CLEAN': True,
+
+    # Whether the bootstrapping phase of the 'Updater'
+    # will retry on failures on the Telegram server.
+    # |   < 0 - retry indefinitely
+    # |     0 - no retries (default)
+    # |   > 0 - retry up to X times
+    # 'POLL_BOOTSTRAP_RETRIES':(Optional[int]),
+
+    # Grace time in seconds for receiving the reply from
+    # server. Will be added to the 'timeout' value and used as the read timeout from
+    # server (Default: 2).
+    # 'POLL_READ_LATENCY':(Optional[float|int]),
+
+    # Use proxy to communicate with Telegram API server. Example:
+    # 'PROXY':(Optional[dict]),
+    #    {
+    #        'proxy_url': 'socks5://ip:port',
+    #        'urllib3_proxy_kwargs': {
+    #             'username': 'username',
+    #             'password': 'password'
+    #        }
+    #    }
+    # Default is not to use any proxy.
+
+    # If set to True, the server will fail to start if some of the
+    # apps contain telegrambot.py files that cannot be successfully imported.
+    'STRICT_INIT': True,
+}
+
+# https://github.com/django/django/blob/main/django/utils/log.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/'.join(
+                [f"{BASE_DIR.as_posix()}", f"{APP_INFO.get('prefix', 'log')}_{os.environ.get('YAPTBDJANGO_ENV_EXEC_MODE', 'DEV')}.log"]
+            ),
+            'formatter': 'verbose'
+        },
+
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+        'bot.bot_logic': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'bot.apps': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+
+    },
+}

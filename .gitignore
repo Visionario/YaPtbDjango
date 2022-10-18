@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+/**/.directory
+.idea/**/*
+*.log
+
+/media/**
+/.idea/
+*.sqlite3
+/**/migrations/*.py
+!/**/__init__.py
+/**/**/migrations/*.py
+!/**/**/__init__.py
+/.directory
+*.env
+
+/logs/
+/logs/**
+/YaPtbDjango/Project_YaPtbDjango/settings/settings_dev.py
+/YaPtbDjango/Project_YaPtbDjango/settings/settings_prod.py
