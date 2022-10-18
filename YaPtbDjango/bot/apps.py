@@ -238,7 +238,7 @@ class BotConfig(AppConfig):
         # import telegram bot handlers for all INSTALLED_APPS
         for app_config in apps.get_app_configs():
             if module_has_submodule(app_config.module, TELEGRAM_BOT_MODULE_NAME):
-                module_name = '%s.%s' % (app_config.name, TELEGRAM_BOT_MODULE_NAME)
+                module_name = f'{app_config.name}.{TELEGRAM_BOT_MODULE_NAME}'
                 if module_imported(module_name, 'main', True):
                     logger.info(f'Loaded {module_name}')
 
