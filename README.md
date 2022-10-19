@@ -19,7 +19,8 @@ Quickstart (polling mode)
 
 * Clone this repository   
 * Copy *settings_dev.py.sample* on *settings_dev.py*   
-* Check and edit/change TELEGRAMBOT TOKEN on settings using your token from [@BotFather](https://t.me/BotFather).   
+* Check and edit/change TELEGRAM BOT TOKEN on settings using your token from [@BotFather](https://t.me/BotFather).   
+* Add your telegram "user_id" on 'SUPERADMINS' (settings file)    
 * Create virtual environment   
   * `python3 -m venv venv`
 * Install requirements   
